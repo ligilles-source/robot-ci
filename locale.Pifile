@@ -1,3 +1,6 @@
+# Hold gcc-14 runtime libs to prevent upgrade from broken noble-security mirror
+RUN apt-mark hold gcc-14-base libgcc-s1 libstdc++6 libgomp1
+
 # Configure timezone and keyboard layout
 RUN apt-get install -y raspi-config
 RUN bash -c "sudo raspi-config nonint do_wifi_country $WIFI_COUNTRY_CODE"
