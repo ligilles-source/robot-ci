@@ -1,5 +1,7 @@
-# Hold gcc-14 runtime libs to prevent upgrade from broken noble-security mirror
-RUN apt-mark hold gcc-14-base libgcc-s1 libstdc++6 libgomp1
+# Pre-install gcc-14 runtime libs at available version to prevent broken upgrade
+RUN apt-get update --allow-releaseinfo-change && apt-get install -y --only-upgrade \
+    gcc-14-base libgcc-s1 libstdc++6 libgomp1 || \
+    apt-get install -y -f
 
 # Configure timezone and keyboard layout
 RUN apt-get install -y raspi-config
